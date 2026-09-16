@@ -1,0 +1,70 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { ImageReveal, Reveal } from "../components/react/Motion";
+import SustainAsk from "../components/react/SustainAsk";
+
+const pillars = [
+  {
+    title: "Organic & traceable",
+    text: "GOTS organic cottons, including scientifically traceable programmes so origin can be checked along the chain — not only claimed on a hangtag.",
+    image: "/images/collections/cotton-fibre.jpg",
+  },
+  {
+    title: "Regenerative",
+    text: "Beyond organic rules: soil cover, reduced tillage, biodiversity, and content standards that follow the fibre from farm to yarn.",
+    image: "/images/sustainability/farm.jpg",
+  },
+  {
+    title: "Naturally coloured",
+    text: "Brown and green cottons that grow their colour. Yarns that skip the dye bath while remaining industrial enough to spin and weave.",
+    image: "/images/collections/yarn-cones-color.jpg",
+  },
+  {
+    title: "Recycled polyester",
+    text: "Bottle-to-filament programmes with quality control on flake, spinning, and DTY — for recycled content that still runs on mill equipment.",
+    image: "/images/sustainability/pet-bottles.jpg",
+  },
+];
+---
+
+<BaseLayout title="Sustainability" description="Organic, regenerative, naturally coloured cotton and recycled polyester programmes represented by Zisventure.">
+  <section class="relative min-h-[70vh] overflow-hidden bg-navy text-paper">
+    <img src="/images/sustainability/cotton-field.jpg" alt="Cotton field" class="absolute inset-0 h-full w-full object-cover opacity-70" />
+    <div class="absolute inset-0 bg-gradient-to-t from-navy via-navy/40 to-transparent"></div>
+    <div class="relative mx-auto flex min-h-[70vh] max-w-7xl flex-col justify-end px-5 pb-16 pt-32 md:px-8">
+      <p class="text-xs uppercase tracking-wideish text-paper/70">Fibre with a chain</p>
+      <h1 class="serif mt-3 max-w-4xl text-5xl md:text-7xl">Sustainability is a specification.</h1>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-3xl px-5 py-24 md:px-8">
+    <Reveal client:visible>
+      <p class="text-lg leading-relaxed text-muted">
+        Zisventure does not sell a green logo. We represent yarns whose origin, farming method, or recycled
+        content can be named: organic and forensic-traceable cotton, regenerative agriculture, naturally
+        coloured fibre, and recycled polyester filament.
+      </p>
+    </Reveal>
+  </section>
+
+  <section class="pb-28">
+    {pillars.map((p, i) => (
+      <article class={`grid items-center gap-10 px-5 py-12 md:grid-cols-2 md:px-8 md:py-16 ${i % 2 ? "bg-cream" : ""}`}>
+        <div class={i % 2 ? "md:order-2" : ""}>
+          <ImageReveal client:visible src={p.image} alt={p.title} className="aspect-[4/3] max-w-3xl" />
+        </div>
+        <Reveal client:visible className="mx-auto max-w-lg">
+          <h2 class="serif text-4xl">{p.title}</h2>
+          <p class="mt-4 leading-relaxed text-muted">{p.text}</p>
+        </Reveal>
+      </article>
+    ))}
+  </section>
+
+  <section class="bg-navy py-24 text-paper">
+    <div class="mx-auto max-w-7xl px-5 md:px-8">
+      <h2 class="serif text-4xl">What buyers usually ask for</h2>
+      <SustainAsk client:visible />
+    </div>
+  </section>
+</BaseLayout>

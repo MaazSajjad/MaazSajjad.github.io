@@ -1,0 +1,72 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { ImageReveal, Reveal } from "../components/react/Motion";
+import { site } from "../data/site";
+---
+
+<BaseLayout title="About" description="ZIS Ventures Sdn Bhd is a Malaysia-based mill representative for Italian yarns and technical polyester.">
+  <section class="relative min-h-[70vh] overflow-hidden bg-navy text-paper">
+    <img src="/images/about/kuala-lumpur.jpg" alt="Kuala Lumpur" class="absolute inset-0 h-full w-full object-cover opacity-60" />
+    <div class="absolute inset-0 bg-gradient-to-t from-navy via-navy/50 to-transparent"></div>
+    <div class="relative mx-auto flex min-h-[70vh] max-w-7xl flex-col justify-end px-5 pb-16 pt-32 md:px-8">
+      <p class="text-xs uppercase tracking-wideish text-paper/70">About the house</p>
+      <h1 class="serif mt-3 max-w-4xl text-5xl md:text-7xl">A yarn house in Ampang, looking toward Italy.</h1>
+    </div>
+  </section>
+
+  <section class="mx-auto grid max-w-7xl gap-12 px-5 py-24 md:grid-cols-2 md:px-8 md:py-32">
+    <Reveal client:visible>
+      <p class="text-xs uppercase tracking-wideish text-clay">{site.legal}</p>
+      <h2 class="serif mt-3 text-4xl">Albini’s Italy yarn representative.</h2>
+    </Reveal>
+    <Reveal client:visible delay={0.1} className="space-y-5 text-lg leading-relaxed text-muted">
+      <p>
+        Zisventure is not a commodity sourcer. We represent mill programmes — extra-long staple cottons,
+        organic and regenerative fibres, noble blends, and technical polyester — for weaving and knitting
+        manufacturers in Malaysia and the region.
+      </p>
+      <p>
+        The work is specification: count, twist, fibre origin, certification, and whether the yarn is meant
+        for voile, jersey, or a cashmere-touch shirting. Buyers come to us when “cotton 30s” is not enough.
+      </p>
+    </Reveal>
+  </section>
+
+  <section class="bg-cream py-24 md:py-32">
+    <div class="mx-auto grid max-w-7xl items-center gap-12 px-5 md:grid-cols-2 md:px-8">
+      <ImageReveal client:visible src="/images/about/office.jpg" alt="Office" className="aspect-[4/3]" />
+      <div>
+        <h2 class="serif text-4xl">How a mill representative works.</h2>
+        <ul class="mt-8 space-y-6 text-muted">
+          <li>
+            <strong class="block text-ink">Programme, not catalogue dump.</strong>
+            We match counts and fibres to the fabric you are actually making.
+          </li>
+          <li>
+            <strong class="block text-ink">Two fibre worlds.</strong>
+            Italian mill cottons and noble blends, plus technical and recycled polyester.
+          </li>
+          <li>
+            <strong class="block text-ink">Samples first.</strong>
+            Enquiries start with end use, count, and volume — then a sample or quote.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-5 py-24 md:px-8">
+    <div class="grid gap-8 md:grid-cols-3">
+      <ImageReveal client:visible src="/images/partners/spinning-mill.jpg" alt="Spinning mill" className="aspect-[3/4] md:col-span-1" />
+      <ImageReveal client:visible src="/images/about/meeting.jpg" alt="Working session" className="aspect-[4/3] md:col-span-2 md:mt-16" />
+    </div>
+    <div class="mt-16 max-w-xl">
+      <h2 class="serif text-3xl">Based in Ampang, Selangor.</h2>
+      <address class="mt-4 not-italic leading-relaxed text-muted">
+        {site.address.map((line) => (
+          <span class="block">{line}</span>
+        ))}
+      </address>
+    </div>
+  </section>
+</BaseLayout>

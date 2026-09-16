@@ -1,0 +1,21 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import CollectionGrid from "../../components/react/CollectionGrid";
+import { Reveal } from "../../components/react/Motion";
+---
+
+<BaseLayout title="Collections" description="Italian mill cottons, noble blends, cellulosics, and technical polyester represented by Zisventure.">
+  <section class="mx-auto max-w-7xl px-5 pb-12 pt-32 md:px-8 md:pt-40">
+    <Reveal client:load instant>
+      <p class="text-xs uppercase tracking-wideish text-clay">Yarn programmes</p>
+      <h1 class="serif mt-3 max-w-4xl text-5xl md:text-7xl">Collections with a mill behind them.</h1>
+      <p class="mt-6 max-w-2xl text-lg text-muted">
+        Nine families — from extra-long staple cotton and regenerative programmes to technical and recycled
+        polyester. Open a collection for typical uses and what to ask for in a sample.
+      </p>
+    </Reveal>
+  </section>
+  <section class="mx-auto max-w-7xl px-5 pb-28 md:px-8">
+    <CollectionGrid client:visible />
+  </section>
+</BaseLayout>

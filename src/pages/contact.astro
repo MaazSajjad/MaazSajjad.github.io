@@ -1,0 +1,62 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ContactForm from "../components/react/ContactForm";
+import { site } from "../data/site";
+import { Reveal } from "../components/react/Motion";
+---
+
+<BaseLayout title="Contact" description="Request a yarn sample or quote from ZIS Ventures Sdn Bhd in Ampang, Malaysia.">
+  <section class="mx-auto grid max-w-7xl gap-16 px-5 pb-12 pt-32 md:grid-cols-2 md:px-8 md:pt-40">
+    <Reveal client:load instant>
+      <p class="text-xs uppercase tracking-wideish text-clay">Ampang office</p>
+      <h1 class="serif mt-3 text-5xl md:text-6xl">Request a sample.</h1>
+      <p class="mt-5 max-w-md text-muted">
+        Send the count, end use, and timing. We reply from the Ampang office with a sample path or a
+        clarification — not an automated quote.
+      </p>
+
+      <dl class="mt-10 space-y-6 text-sm">
+        <div>
+          <dt class="text-xs uppercase tracking-wideish text-muted">Address</dt>
+          <dd class="mt-2 leading-relaxed">
+            {site.address.map((line) => (
+              <span class="block">{line}</span>
+            ))}
+          </dd>
+        </div>
+        <div>
+          <dt class="text-xs uppercase tracking-wideish text-muted">Telephone</dt>
+          <dd class="mt-2">
+            <a href={site.phone.telHref} class="hover:underline">{site.phone.tel}</a>
+          </dd>
+        </div>
+        <div>
+          <dt class="text-xs uppercase tracking-wideish text-muted">Mobile</dt>
+          <dd class="mt-2">
+            <a href={site.phone.mobileHref} class="hover:underline">{site.phone.mobile}</a>
+          </dd>
+        </div>
+        <div>
+          <dt class="text-xs uppercase tracking-wideish text-muted">Fax</dt>
+          <dd class="mt-2">{site.phone.fax}</dd>
+        </div>
+        <div>
+          <dt class="text-xs uppercase tracking-wideish text-muted">Email</dt>
+          <dd class="mt-2 space-y-1">
+            {site.emails.map((email) => (
+              <a href={`mailto:${email}`} class="block hover:underline">{email}</a>
+            ))}
+          </dd>
+        </div>
+      </dl>
+    </Reveal>
+
+    <div>
+      <ContactForm client:visible />
+    </div>
+  </section>
+
+  <section class="mt-8">
+    <img src="/images/contact/kuala-lumpur.jpg" alt="Kuala Lumpur, near Ampang" class="h-[50vh] w-full object-cover" />
+  </section>
+</BaseLayout>

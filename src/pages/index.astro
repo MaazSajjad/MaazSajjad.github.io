@@ -1,0 +1,85 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/react/Hero";
+import FibreMarquee from "../components/react/FibreMarquee";
+import CollectionGrid from "../components/react/CollectionGrid";
+import Industries from "../components/react/Industries";
+import { ImageReveal, Reveal } from "../components/react/Motion";
+import { site } from "../data/site";
+---
+
+<BaseLayout>
+  <Hero client:load />
+  <FibreMarquee client:visible />
+
+  <section class="mx-auto max-w-7xl px-5 py-24 md:px-8 md:py-32">
+    <Reveal client:visible className="max-w-3xl">
+      <p class="text-xs uppercase tracking-wideish text-clay">The house</p>
+      <h2 class="serif mt-3 text-4xl md:text-6xl">Specified fibre. Not generic yarn.</h2>
+      <p class="mt-6 text-lg leading-relaxed text-muted">
+        {site.legal} is the Malaysia-based representative for Albini’s Italy yarns — extra-long staple
+        cottons, organic and regenerative programmes, noble blends — with a second line in technical and
+        recycled polyester.
+      </p>
+    </Reveal>
+
+    <div class="mt-16 grid gap-6 md:grid-cols-2">
+      <a href="/about" class="group block">
+        <ImageReveal
+          client:visible
+          src="/images/home/cotton-field.jpg"
+          alt="Cotton field"
+          className="aspect-[5/4]"
+        />
+        <h3 class="serif mt-5 text-3xl">Italian cotton line</h3>
+        <p class="mt-2 text-muted">Pima, Giza, Sea Island, Biofusion, regenerative, naturally coloured, and noble blends.</p>
+      </a>
+      <a href="/collections/technical-polyester" class="group block md:mt-16">
+        <ImageReveal
+          client:visible
+          src="/images/partners/weaving-mill.jpg"
+          alt="Weaving mill"
+          className="aspect-[5/4]"
+        />
+        <h3 class="serif mt-5 text-3xl">Technical polyester</h3>
+        <p class="mt-2 text-muted">FDY, DTY, functional specialties, and recycled PET filament.</p>
+      </a>
+    </div>
+  </section>
+
+  <section class="bg-cream py-24 md:py-32">
+    <div class="mx-auto max-w-7xl px-5 md:px-8">
+      <Reveal client:visible>
+        <p class="text-xs uppercase tracking-wideish text-clay">Collections</p>
+        <h2 class="serif mt-3 text-4xl md:text-6xl">Yarns with a name.</h2>
+      </Reveal>
+      <div class="mt-14">
+        <CollectionGrid client:visible limit={6} />
+      </div>
+      <a href="/collections" class="mt-12 inline-flex text-sm uppercase tracking-wideish after:ml-2 after:content-['→']">
+        All collections
+      </a>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-5 py-24 md:px-8 md:py-32">
+    <Reveal client:visible className="max-w-2xl">
+      <p class="text-xs uppercase tracking-wideish text-clay">End uses</p>
+      <h2 class="serif mt-3 text-4xl md:text-5xl">Who we supply.</h2>
+    </Reveal>
+    <Industries client:visible />
+  </section>
+
+  <section class="relative overflow-hidden bg-navy py-28 text-paper">
+    <img src="/images/home/knitwear.jpg" alt="" class="absolute inset-0 h-full w-full object-cover opacity-30" />
+    <div class="relative mx-auto max-w-3xl px-5 text-center md:px-8">
+      <Reveal client:visible>
+        <p class="text-xs uppercase tracking-wideish text-paper/60">Samples</p>
+        <h2 class="serif mt-4 text-4xl md:text-6xl">Tell us the count. We’ll find the yarn.</h2>
+        <a href="/contact" class="mt-8 inline-flex rounded-full bg-paper px-7 py-3 text-sm text-ink">
+          Request a sample
+        </a>
+      </Reveal>
+    </div>
+  </section>
+</BaseLayout>

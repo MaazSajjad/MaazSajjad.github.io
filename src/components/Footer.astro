@@ -1,0 +1,43 @@
+---
+import { site } from "../data/site";
+
+const links = [
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/collections", label: "Collections" },
+  { href: "/sustainability", label: "Sustainability" },
+  { href: "/contact", label: "Contact" },
+];
+---
+
+<footer class="border-t border-line bg-navy text-paper">
+  <div class="mx-auto grid max-w-7xl gap-12 px-5 py-16 md:grid-cols-4 md:px-8">
+    <div class="md:col-span-2">
+      <p class="serif text-3xl">Zisventure</p>
+      <p class="mt-3 max-w-md text-sm text-paper/70">{site.legal}. {site.tagline}.</p>
+    </div>
+    <div>
+      <p class="text-xs uppercase tracking-wideish text-paper/50">Visit</p>
+      <ul class="mt-4 space-y-2 text-sm">
+        {links.map((l) => (
+          <li><a href={l.href} class="hover:text-cream">{l.label}</a></li>
+        ))}
+      </ul>
+    </div>
+    <div>
+      <p class="text-xs uppercase tracking-wideish text-paper/50">Ampang</p>
+      <address class="mt-4 not-italic text-sm leading-relaxed text-paper/80">
+        {site.address.map((line) => (
+          <span class="block">{line}</span>
+        ))}
+      </address>
+      <p class="mt-4 text-sm">
+        Tel <a href={site.phone.telHref} class="hover:underline">{site.phone.tel}</a><br />
+        Mobile <a href={site.phone.mobileHref} class="hover:underline">{site.phone.mobile}</a>
+      </p>
+    </div>
+  </div>
+  <div class="border-t border-white/10 px-5 py-5 text-center text-xs text-paper/50 md:px-8">
+    © {new Date().getFullYear()} {site.legal}. All rights reserved.
+  </div>
+</footer>
