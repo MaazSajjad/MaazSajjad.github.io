@@ -1,8 +1,10 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { collections, getCollection } from "../../data/collections";
+import { bookletsForCollection } from "../../data/booklets";
 import { ImageReveal, Reveal } from "../../components/react/Motion";
 import ChipList from "../../components/react/ChipList";
+import PdfBooklets from "../../components/react/PdfBooklets";
 
 export function getStaticPaths() {
   return collections.map((item) => ({ params: { slug: item.slug } }));
@@ -11,6 +13,7 @@ export function getStaticPaths() {
 const { slug } = Astro.params;
 const item = getCollection(slug!);
 if (!item) throw new Error("Unknown collection");
+const relatedBooklets = bookletsForCollection(item.slug);
 ---
 
 <BaseLayout title={item.title} description={item.summary}>
@@ -42,9 +45,22 @@ if (!item) throw new Error("Unknown collection");
     </div>
   </section>
 
-  <section class="bg-cream px-5 py-20 text-center md:px-8">
+  {relatedBooklets.length > 0 && (
+    <section class="border-t border-line bg-cream">
+      <div class="mx-auto max-w-7xl px-5 py-24 md:px-8">
+        <PdfBooklets
+          client:visible
+          items={relatedBooklets}
+          heading="Related booklets"
+          intro={`Mill PDFs for ${item.title} — view in the page or download for your team.`}
+        />
+      </div>
+    </section>
+  )}
+
+  <section class="bg-navy px-5 py-20 text-center text-paper md:px-8">
     <h2 class="serif text-4xl">Need a count, twist, or colourway?</h2>
-    <p class="mx-auto mt-4 max-w-lg text-muted">Tell us the end use and we will come back with a sample path.</p>
-    <a href="/contact" class="mt-8 inline-flex rounded-full bg-ink px-7 py-3 text-sm text-paper">Request a sample</a>
+    <p class="mx-auto mt-4 max-w-lg text-paper/70">Tell us the end use and we will come back with a sample path.</p>
+    <a href="/contact" class="mt-8 inline-flex rounded-full bg-paper px-7 py-3 text-sm text-ink">Request a sample</a>
   </section>
 </BaseLayout>

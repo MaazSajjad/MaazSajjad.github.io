@@ -1,21 +1,54 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import CollectionGrid from "../../components/react/CollectionGrid";
+import PdfBooklets from "../../components/react/PdfBooklets";
 import { Reveal } from "../../components/react/Motion";
 ---
 
-<BaseLayout title="Collections" description="Italian mill cottons, noble blends, cellulosics, and technical polyester represented by Zisventure.">
-  <section class="mx-auto max-w-7xl px-5 pb-12 pt-32 md:px-8 md:pt-40">
-    <Reveal client:load instant>
-      <p class="text-xs uppercase tracking-wideish text-clay">Yarn programmes</p>
-      <h1 class="serif mt-3 max-w-4xl text-5xl md:text-7xl">Collections with a mill behind them.</h1>
-      <p class="mt-6 max-w-2xl text-lg text-muted">
-        Nine families — from extra-long staple cotton and regenerative programmes to technical and recycled
-        polyester. Open a collection for typical uses and what to ask for in a sample.
-      </p>
-    </Reveal>
+<BaseLayout title="Collections" description="Italian mill cottons, noble blends, cellulosics, technical polyester, and mill booklets from Zisventure.">
+  <section class="relative overflow-hidden bg-cream">
+    <div
+      class="pointer-events-none absolute inset-0"
+      style="background:
+        radial-gradient(ellipse 65% 50% at 8% 0%, rgba(164,92,58,0.12), transparent 55%),
+        radial-gradient(ellipse 45% 40% at 100% 20%, rgba(27,36,44,0.04), transparent 50%);"
+    ></div>
+    <div class="relative mx-auto max-w-7xl px-5 pb-16 pt-28 md:px-8 md:pb-20 md:pt-36">
+      <Reveal client:load instant>
+        <p class="text-xs uppercase tracking-wideish text-clay">Collections</p>
+        <h1 class="serif mt-3 max-w-3xl text-5xl leading-[0.95] text-ink md:text-7xl">
+          Mill booklets,<br />then the yarn families.
+        </h1>
+        <p class="mt-5 max-w-xl text-base text-muted md:text-lg">
+          Start with the four reference PDFs — view them on this page or download. Scroll for the nine yarn programmes.
+        </p>
+      </Reveal>
+
+      <div class="mt-12 md:mt-14">
+        <PdfBooklets
+          client:load
+          featured
+          heading="Reference PDFs"
+          intro="Tap a booklet to open it below. Each loads with a progress bar, then you can read or download."
+        />
+      </div>
+    </div>
   </section>
-  <section class="mx-auto max-w-7xl px-5 pb-28 md:px-8">
-    <CollectionGrid client:visible />
+
+  <section class="mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-28">
+    <Reveal client:visible>
+      <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+        <div class="max-w-2xl">
+          <p class="text-xs uppercase tracking-wideish text-clay">Yarn programmes</p>
+          <h2 class="serif mt-3 text-4xl text-ink md:text-5xl">Nine families behind the mill.</h2>
+          <p class="mt-4 text-muted">
+            From extra-long staple cotton and regenerative programmes to technical and recycled polyester.
+          </p>
+        </div>
+      </div>
+    </Reveal>
+    <div id="families" class="mt-12 scroll-mt-28">
+      <CollectionGrid client:visible />
+    </div>
   </section>
 </BaseLayout>

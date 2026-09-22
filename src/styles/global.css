@@ -44,21 +44,6 @@ a {
   font-family: Fraunces, Georgia, serif;
 }
 
-.page-enter {
-  animation: page-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-@keyframes page-in {
-  from {
-    opacity: 0;
-    transform: translateY(18px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -71,35 +56,5 @@ a {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
-  }
-}
-
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation-duration: 0.55s;
-  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-::view-transition-old(root) {
-  animation-name: fade-out-up;
-}
-
-::view-transition-new(root) {
-  animation-name: fade-in-up;
-}
-
-@keyframes fade-out-up {
-  to {
-    opacity: 0;
-    filter: blur(8px);
-    transform: translateY(-12px) scale(0.99);
-  }
-}
-
-@keyframes fade-in-up {
-  from {
-    opacity: 0;
-    filter: blur(8px);
-    transform: translateY(18px) scale(1.01);
   }
 }

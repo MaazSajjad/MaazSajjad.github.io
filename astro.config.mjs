@@ -6,6 +6,10 @@ export default defineConfig({
   site: "https://maazsajjad.github.io",
   integrations: [react(), tailwind({ applyBaseStyles: false })],
   output: "static",
+  prefetch: {
+    prefetchAll: true,
+    defaultStrategy: "hover",
+  },
   server: { port: 4321, host: true },
   vite: {
     server: {

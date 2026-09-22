@@ -24,13 +24,26 @@ const fullTitle = title === site.name ? `${site.name} — ${site.tagline}` : `${
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <title>{fullTitle}</title>
-    <ViewTransitions />
+    <ViewTransitions fallback="none" />
   </head>
-  <body>
+  <body class="bg-paper text-ink">
     <Nav client:load />
-    <main class="page-enter" transition:animate="fade">
+    <main>
       <slot />
     </main>
     <Footer />
   </body>
 </html>
+
+<style is:global>
+  /* Kill every view-transition effect so nothing covers or hides the header */
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+
+  ::view-transition {
+    pointer-events: none !important;
+  }
+</style>
